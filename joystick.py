@@ -6,7 +6,7 @@ class Joystick:
         self.analogico_esquerdo_y = 0.0
         self.analogico_direito_x  = 0.0
         self.analogico_direito_y  = 0.0
-        self.botao[0, 1, 2, 3, 4, 5] = False
+        self.botao = [False, False, False, False, False, False]
 
         pygame.init()
         self.clock = pygame.time.Clock()
@@ -25,13 +25,13 @@ class Joystick:
     def _verificar_botoes(self):
         for event in pygame.event.get():
             if event.type == pygame.JOYBUTTONDOWN:
-                for b in self.botao:
-                    if self.joystick.get_button(0):
+                for b in range(len(self.botao)):
+                    if self.joystick.get_button(b):
                         self.botao[b] = True
 
             elif event.type == pygame.JOYBUTTONUP:
-                for b in self.botao:
-                    if int(event.button) == 0:
+                for b in range(len(self.botao)):
+                    if int(event.button) == b:
                         self.botao[b] = False
 
 
